@@ -2,11 +2,24 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Simu</title>
+  <title>Te</title>
 </head>
-<body>
-  <h1 style="text-align: center;">📊 Simul</h1>
-  <p style="text-align: center;">Les événements ont été déclenchés avec succès.</p>
+<body style="font-family: Arial; text-align: center; padding: 50px;">
+
+  <h1>🛍️ Simul</h1>
+  <p>Cliquez sur chaque bouton.</p>
+
+  <button onclick="ttq.page()" style="padding: 10px 20px; margin: 10px;">PageView</button>
+  <button onclick="ttq.track('ViewContent')" style="padding: 10px 20px; margin: 10px;">ViewContent</button>
+  <button onclick="ttq.track('AddToCart')" style="padding: 10px 20px; margin: 10px;">AddToCart</button>
+  <button onclick="ttq.track('InitiateCheckout')" style="padding: 10px 20px; margin: 10px;">InitiateCheckout</button>
+
+  <button onclick="triggerPurchase()" style="padding: 10px 20px; margin: 10px; background-color:#28a745; color:white;">
+    🛒 CompletePayment (Purchase)
+  </button>
+
+  <hr style="margin: 40px 0;">
+  <p>✅ Vérifiez dans le</p>
 
   <!-- TikTok Pixel -->
   <script>
@@ -46,18 +59,21 @@
       };
 
       ttq.load('D0SC4TJC77UC7904F220');
-      ttq.page();
-
-      // 🚀 Disparar eventos padrão do TikTok:
-      ttq.track('ViewContent');
-      ttq.track('AddToCart');
-      ttq.track('InitiateCheckout');
-      ttq.track('CompletePayment'); // Purchase
-      ttq.track('SubmitForm');
-      ttq.track('Contact');
-      ttq.track('Subscribe');
-      ttq.track('Search');
     }(window, document, 'ttq');
+
+    // Função que simula uma compra real
+    function triggerPurchase() {
+      ttq.track('CompletePayment', {
+        content_id: 'SKU1234',
+        content_type: 'product',
+        quantity: 1,
+        price: 29.90,
+        currency: 'EUR',
+        value: 29.90,
+        description: 'Ultra Tech – Chemise Haute Performance'
+      });
+      alert('🛒 succès !');
+    }
   </script>
 
 </body>
